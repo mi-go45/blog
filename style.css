@@ -1,0 +1,19 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid rgb(185, 185, 185);
+}
+
+header div.logo {
+    padding-left: 30px;
+    font-size: larger;
+    color: rgb(110, 110, 255);
+}

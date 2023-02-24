@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="prerender" href="https://blogbooks.net/">
+    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,700&display=swap');
+
+        html, body {
+            /* font-family: 'Zen Kurenaido', sans-serif; */
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            weight: 100%;
+        }
+
+        *:not(.inMenu *) {
+            color: rgb(74, 74, 74);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-bottom: 1px solid rgb(185, 185, 185);
+            display: flex;
+        }
+
+        header > * {
+            /* User Select */
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+
+            font-size: larger;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        header div.logo {
+            font-family: 'Poppins', sans-serif;
+            padding-left: 30px;
+            padding-right: 30px;
+            display: inline-block;
+        }
+        header div.logo:hover, header div.menu i:hover {
+            color: rgb(180, 180, 180);
+            cursor: pointer;
+        }
+        header div.menu i:hover {
+            outline-offset: 5px;
+            outline: 2px solid rgb(180, 180, 180);
+        }
+
+        header div.menu {
+            font-size: x-large;
+            position: fixed;
+            left: auto;
+            right: 30px;
+        }
+
+        header div.inMenu {
+            z-index: 100;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: none;
+            font-family: 'Zen Kurenaido', sans-serif;
+        }
+
+        header div.inMenu div.close {
+            position: fixed;
+            top: 30px;
+            left: auto;
+            right: 30px;
+            font-size: xx-large;
+            cursor: pointer;
+        }
+
+        header div.inMenu * {
+            color: #fff;
+        }
+
+        header div.inMenu .lists {
+            position: fixed;
+            text-align:center;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+        }
+        header div.inMenu .list {
+            font-size: xx-large;
+            text-align:center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        header div.inMenu .list:hover {
+            border-bottom: 2px solid #fff;
+        }
+
+        main {
+            padding: 30px;
+            padding-top: 70px;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #fff;
+            border-top: 1px solid rgb(185, 185, 185);
+            position: sticky;
+            top: 100vh;
+        }
+        body > footer {
+            position: sticky;
+            top: 100vh;
+        }
+        footer * {
+            color: rgb(185, 185, 185);
+        }
+        footer p {
+            text-align: right;
+            padding: 30px 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BlogBooks Test</div>
+        <div class="menu"><i class='bx bx-menu'></i></div>
+        <div class="inMenu">
+            <div class="close"><i class='bx bx-x'></i></div>
+            <div class="lists">
+                <div class="list Home">Home</div>
+                <div class="list About">About</div>
+                <div class="list Blog">Blog</div>
+                <div class="list Community">Community</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+    </main>
+
+    <footer>
+        <p>© 2019-2022 BlogBooks. All rights reserved.</p>
+    </footer>
+    <!-- <script src="/script.js"></script> -->
+    <script>
+        const siteTitle = " - Blogbooks Test",
+              header = document.querySelector("header"),
+              openMenu = header.querySelector(".menu"),
+              inMenu = header.querySelector(".inMenu"),
+              logo = header.querySelector(".logo"),
+              closeMenu = inMenu.querySelector(".close"),
+              inMenuLists = inMenu.querySelector(".lists");
+
+        const vanillaURL = location.origin + location.pathname,
+              siteMap = "<a href='"+vanillaURL+"'>Home</a>  <a href='"+vanillaURL+"?page=About'>About</a>  <a href='https://blogbooks.net'>Blog</a>  <a href="+vanillaURL+"?page=Community>Community</a><br>By Argument: siteMap";
+        
+        // Page ID(Parameter)
+        function getParam(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Teleport to URL
+        logo.addEventListener("click", () => {
+            location.href = vanillaURL;
+        });
+        inMenuLists.querySelector(".Home").onclick = () => {
+            location.href = vanillaURL;
+        }
+        inMenuLists.querySelector(".About").onclick = () => {
+            location.href = vanillaURL + "?page=About";
+        }
+        inMenuLists.querySelector(".Blog").onclick = () => {
+            location.href = "https://blogbooks.net";
+        }
+        inMenuLists.querySelector(".Community").onclick = () => {
+            location.href = vanillaURL + "?page=Community";
+        }
+
+        openMenu.addEventListener("click", () => {
+            inMenu.style.display = "block";
+        });
+        closeMenu.addEventListener("click", () => {
+            inMenu.style.display = "none";
+        })
+
+        // Start Up
+        window.onload = () => {
+            switch (getParam("page")) {
+                case null:
+                case "":
+                    document.title = "Home" + siteTitle;
+                    document.querySelector("main").innerHTML = "Hello, Welcome to here.";
+                    break;
+                case "memo":
+                    document.title = "memo[Test]" + siteTitle;
+                    document.querySelector("main").innerHTML = "<div contenteditable spellcheck='false'><b>Hello, This is memo.<br>Let us click on this!</b></div>";
+                    document.querySelector("main").setAttribute("style", "width: 500px");
+                    break;
+                case "about":
+                case "About":
+                    document.title = "About" + siteTitle;
+                    document.querySelector("main").innerHTML = "<h2>About</h2><div>Created(site) By harun<br>Group: CompassNetworkJP & BlogBooks</div>";
+                    break;
+                case "community":
+                case "Community":
+                    document.title = "Community" + siteTitle;
+                    document.querySelector("main").innerHTML = "<h2>Community</h2>";
+                    break;
+                default:
+                    document.title = "Error: 404" + siteTitle;
+                    document.querySelector("main").innerHTML = "<h2>Oops, Something went wrong!</h2><div>Error: 404 - Could not find page</div><br>Site Map: <br><div style='font-size: large'>"+siteMap+"</div>";
+                    break;
+            }
+            inMenu.style.display = "none";
+        }
+    </script>
+</body>
+</html>
